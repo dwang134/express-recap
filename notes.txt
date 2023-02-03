@@ -1,0 +1,23 @@
+a router is a way for you to create a specific object to serve under
+one specific route
+
+PROS of using express:
+
+1. sending response is much more simple. You can specify the status type as well as the status
+json body you are returning in one line whereas in node you have to do writhead and then do res.send
+
+2. creating route objects for specific routes. More modularity and clarity.
+
+3. allows you to have REST methods on one single instance using .route object
+saves you time instead of retyping the same route over and over again
+
+4. middlewares are powerful, code that runs after the request and before the response
+
+TIPS:
+
+1. always put static routes before dynamic routes because express reads from top to bottom, as soon as an available route
+is found then it will use that
+
+2. .params() middleware allows you to get the object with corresponding indicie with ease
+simple assign req.objName = array[paramValue] and whenever you console.log out req.objName
+you will get back the object you want
