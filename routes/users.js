@@ -11,8 +11,18 @@ router.get('/new', (req, res)=> {
 })
 
 router.post('/', (req, res)=> {
-    //express does not 
-    res.send(`${req.body.firstName} has been created`);
+
+    const isValid = true;
+    if (isValid){
+        users.push({firstName: req.body.firstName})
+        //redirect to brand new user that has just been created
+        res.redirect(`/users/${users.length - 1}`)
+    }else{
+        console.log('Error');
+        res.render('users/new', {firstName: req.body.firstName})
+    }
+    //express does not allow you to access req.body be default
+    // res.send(`${req.body.firstName} has been created`);
 })
 
 router.route('/:id').get((req, res)=> {
