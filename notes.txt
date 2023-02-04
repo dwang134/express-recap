@@ -21,3 +21,5 @@ is found then it will use that
 2. .params() middleware allows you to get the object with corresponding indicie with ease
 simple assign req.objName = array[paramValue] and whenever you console.log out req.objName
 you will get back the object you want
+
+3. express does not allow you to access req.body directly you will have to use a middleware

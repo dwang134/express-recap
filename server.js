@@ -6,6 +6,8 @@ const app = express();
 app.use(express.static('public'));
 
 app.set('view engine', 'ejs');
+//boiler plate and allows us access info coming from forms
+app.use(express.urlencoded({extended: true}));
 // app.use(logger);
 
 //path specific middleware with logger

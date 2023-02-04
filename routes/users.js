@@ -7,11 +7,12 @@ router.get('/', (req, res)=> {
 })
 
 router.get('/new', (req, res)=> {
-    res.send('User new form');
+    res.render('users/new', {firstName: "Test"});
 })
 
 router.post('/', (req, res)=> {
-    res.send('User has been created');
+    //express does not 
+    res.send(`${req.body.firstName} has been created`);
 })
 
 router.route('/:id').get((req, res)=> {
