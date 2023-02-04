@@ -8,6 +8,8 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 //boiler plate and allows us access info coming from forms
 app.use(express.urlencoded({extended: true}));
+//same thing as urlencoded except for a json request allow you to parse json info from body
+app.use(express.json());
 // app.use(logger);
 
 //path specific middleware with logger
@@ -38,11 +40,6 @@ app.get('/', (req, res)=> {
 const userRouter= require('./routes/users')
 
 app.use('/users', userRouter);
-
-function logger(req, res, next){
-    console.log(req.originalUrl);
-    next();
-}
 
 app.listen(3000);
 

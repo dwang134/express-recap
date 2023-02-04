@@ -23,3 +23,6 @@ simple assign req.objName = array[paramValue] and whenever you console.log out r
 you will get back the object you want
 
 3. express does not allow you to access req.body directly you will have to use a middleware
+
+4. if user submits the wrong information you want to populate that info back to the user
+so they can change it and make it correct

@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+//make it specific to this route /users
+router.use(logger);
 
 router.get('/', (req, res)=> {
+    console.log(req.query.name);
     res.send('User List');
 })
 
@@ -59,5 +62,10 @@ router.param('id', (req, res, next, id)=> {
     //returns the next expected response
     next();
 }) 
+
+function logger(req, res, next){
+    console.log(req.originalUrl);
+    next();
+}
 
 module.exports = router;
