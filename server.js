@@ -2,10 +2,18 @@ const express = require('express');
 
 const app = express();
 
+//serves all the HTML files from the public folder
+app.use(express.static('public'));
+
 app.set('view engine', 'ejs');
+//boiler plate and allows us access info coming from forms
+app.use(express.urlencoded({extended: true}));
+//same thing as urlencoded except for a json request allow you to parse json info from body
+app.use(express.json());
 // app.use(logger);
 
-app.get('/', logger, (req, res)=> {
+//path specific middleware with logger
+app.get('/', (req, res)=> {
     res.render('index', {text: 'World'});
 })
 
@@ -32,11 +40,6 @@ app.get('/', (req, res)=> {
 const userRouter= require('./routes/users')
 
 app.use('/users', userRouter);
-
-function logger(req, res, next){
-    console.log(req.originalUrl);
-    next();
-}
 
 app.listen(3000);
 

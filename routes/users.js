@@ -1,17 +1,31 @@
 const express = require('express');
 const router = express.Router();
 
+//make it specific to this route /users
+router.use(logger);
 
 router.get('/', (req, res)=> {
+    console.log(req.query.name);
     res.send('User List');
 })
 
 router.get('/new', (req, res)=> {
-    res.send('User new form');
+    res.render('users/new', {firstName: "Test"});
 })
 
 router.post('/', (req, res)=> {
-    res.send('User has been created');
+
+    const isValid = true;
+    if (isValid){
+        users.push({firstName: req.body.firstName})
+        //redirect to brand new user that has just been created
+        res.redirect(`/users/${users.length - 1}`)
+    }else{
+        console.log('Error');
+        res.render('users/new', {firstName: req.body.firstName})
+    }
+    //express does not allow you to access req.body be default
+    // res.send(`${req.body.firstName} has been created`);
 })
 
 router.route('/:id').get((req, res)=> {
@@ -48,5 +62,10 @@ router.param('id', (req, res, next, id)=> {
     //returns the next expected response
     next();
 }) 
+
+function logger(req, res, next){
+    console.log(req.originalUrl);
+    next();
+}
 
 module.exports = router;
